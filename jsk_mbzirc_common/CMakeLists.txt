@@ -6,7 +6,6 @@ project(jsk_mbzirc_common)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS gazebo_ros std_msgs geometry_msgs)
 
-
 # Depend on system install of Gazebo and SDFormat
 find_package(gazebo REQUIRED)
 find_package(Boost REQUIRED COMPONENTS thread random)
@@ -48,7 +47,10 @@ install(DIRECTORY launch gazebo_model
 ## Testing ##
 #############
 if(CATKIN_ENABLE_TESTING)
-  find_package(catkin REQUIRED COMPONENTS rostest roslaunch)
+  find_package(catkin REQUIRED COMPONENTS rostest roslaunch roslint)
+  roslint_cpp()
+  roslint_python()
+  roslint_add_test()
   roslaunch_add_file_check(launch/mbzirc_arena.launch)
   roslaunch_add_file_check(launch/mbzirc_arena_1.launch)
   roslaunch_add_file_check(launch/mbzirc_arena_2.launch)
