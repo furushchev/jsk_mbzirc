@@ -100,7 +100,6 @@ void GazeboTruck::Update()
   if ( terminated_ ) {
     return;
   }
-
   //std::cerr << link_->GetWorldPose() << std::endl;
   common::Time current_time = world_->GetSimTime();
   double delta_time = (current_time-last_time_).Double();
@@ -162,7 +161,8 @@ void GazeboTruck::Update()
   rayShape->SetPoints(start, end);
   rayShape->GetIntersection(distAbove, entityName);
   distAbove -= 0.00001;
-
+  
+  //
   std::stringstream ss;
   std_msgs::String msg_time;
   ss << 20*60 - current_time.Double();
